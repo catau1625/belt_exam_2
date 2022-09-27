@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+	<nav class="navbar navbar-dark bg-dark">
+    	<div class="container-fluid">
+      		<a href="/" class="navbar-brand">Inicio</a>
+			<a href="/agregar_revista" class="navbar-brand">Agregar Revista</a>
+			<a href="/actualizar_datos_usuario" class="navbar-brand">Actualizar Mis Datos</a>
+      		<form class="d-flex" role="search">
+        		<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+        		<a class="btn btn-warning" href="/cerrar_sesion" type="submit">Salir</a>
+      		</form>
+    	</div>
+  	</nav>
+
+    <h1>Bienvenido {{ nombre }} {{ apellido }}</h1>
+	<h3>Revistas Disponibles</h3>
+		<table class="table table-dark">
+			<thead>
+				<th>Revista</th>
+				<th>Agregar Suscripción</th>
+			</thead>
+			<tbody>
+				{% for revista in revistas: %}
+					<tr class="table-active">
+						<td><a href="/show/revista/{{ revista.id }}">{{ revista.nombre }}</a></td>
+						<td><a href="/agregar/suscripcion/{{ revista.id }}" class="btn btn-warning">Suscribirse</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	<h3>Revistas a las que estas suscrito</h3>
+		<table class="table table-dark">
+			<thead>
+				<th>Revista</th>
+				<th>Descripción</th>
+			</thead>
+			<tbody>
+				{% for revista in revistas_agregadas: %}
+					<tr class="table-active">
+						<td><a href="/show/revista/{{ revista.id }}">{{ revista.nombre }}</a></td>
+						<td>{{ revista.descripcion }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+{% endblock %}

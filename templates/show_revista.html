@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a href="/" class="navbar-brand">Inicio</a>
+        <a href="/agregar_revista" class="navbar-brand">Agregar Revista</a>
+        <a href="/actualizar_datos_usuario" class="navbar-brand">Actualizar Mis Datos</a>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+            <a class="btn btn-warning" href="/cerrar_sesion" type="submit">Salir</a>
+        </form>
+    </div>
+</nav>
+<hr>
+<hr>
+<h1>#{{ revista_info.id }} {{ revista_info.nombre }}</h1>
+
+<h3>Descripción:</h3>
+<h4>{{ revista_info.descripcion }}</h4>
+<hr>
+<hr>
+<h3>Usuarios Suscritos</h3>
+<table class="table table-dark">
+    <thead>
+        <th>Nombre</th>
+    </thead>
+    <tbody>
+        {% for user in usuarios_suscritos %}
+            <tr class="table-active">
+                <td>{{ user.first_name }} {{ user.last_name }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+
+
+{% endblock %}
